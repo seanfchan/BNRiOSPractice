@@ -13,22 +13,55 @@
 @end
 
 @implementation QuizViewController
-
-- (void)viewDidLoad
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Call the supers init method
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self)
+    {
+        // Create two arrays
+        questions = [[NSMutableArray alloc] init];
+        answers = [[NSMutableArray alloc] init];
+        
+        // Add questions and answers to the arrays
+        [questions addObject:@"What is 7 + 7?"];
+        [answers addObject:@"14"];
+        
+        [questions addObject:@"What is the capital of Vermont?"];
+        [answers addObject:@"Montpelier"];
+        
+        [questions addObject:@"From what is cognac made?"];
+        [answers addObject:@"Grapes"];
+    }
+    
+    return self;
 }
 
-- (void)viewDidUnload
+- (IBAction)showQuestion:(id)sender
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    //Step to the next questions
+    currentQuestionIndex = ++currentQuestionIndex % [questions count];
+    
+    // Get the string at that index, in questions
+    NSString *question = [questions objectAtIndex:currentQuestionIndex];
+    
+    // Log the string to the console
+    NSLog(@"displaying question: %@", question);
+    
+    // Display the string in the question field
+    [questionField setText:question];
+    
+    // Clear the answer field
+    [answerField setText:@"???"];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (IBAction)showAnswer:(id)sender
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    // Getting the answer
+    NSString *answer = [answers objectAtIndex:currentQuestionIndex];
+    
+    // Display the answer in answerField
+    [answerField setText:answer];
 }
-
 @end
