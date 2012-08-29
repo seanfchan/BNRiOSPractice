@@ -35,9 +35,32 @@
     [locationManager setDesiredAccuracy:50];
     
     [mapView setDelegate:self];
+    
+    [segmentedControl addTarget:self
+                         action:@selector(sendersegmentedControlChanged:)
+               forControlEvents:UIControlEventValueChanged];
   }
 
   return self;
+}
+
+- (IBAction)sendersegmentedControlChanged:(UISegmentedControl *)sender
+{
+  switch (sender.selectedSegmentIndex)
+  {
+    case 0:
+      self.mapView.mapType = MKMapTypeStandard;
+      break;
+    case 1:
+      self.mapView.mapType = MKMapTypeSatellite;
+      break;
+    case 2:
+      self.mapView.mapType = MKMapTypeHybrid;
+      break;
+    default:
+      NSLog(@"Should not be in this part of the switch statement.");
+      self.mapView.mapType = MKMapTypeStandard;
+  }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -87,6 +110,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [self findLocation];
+  NSLog(@"Map type: %d", mapView.mapType);
   
   [textField resignFirstResponder];
   

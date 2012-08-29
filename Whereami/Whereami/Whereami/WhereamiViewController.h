@@ -19,11 +19,13 @@
   IBOutlet MKMapView *mapView;
   IBOutlet UIActivityIndicatorView *activityIndicator;
   IBOutlet UITextField *locationTitleField;
+  IBOutlet UISegmentedControl *segmentedControl;
 }
 
 @property (nonatomic, strong) MKMapView *mapView;
 
 - (void)findLocation;
 - (void)foundLocation:(CLLocation *)loc;
+- (IBAction)sendersegmentedControlChanged:(UISegmentedControl *)sender;
 
 @end
