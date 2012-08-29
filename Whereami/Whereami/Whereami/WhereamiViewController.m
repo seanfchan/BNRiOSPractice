@@ -7,12 +7,20 @@
 //
 
 #import "WhereamiViewController.h"
+#import "SPLMapPoint.h"
 
 @interface WhereamiViewController ()
 
 @end
 
 @implementation WhereamiViewController
+
+@synthesize mapView;
+
+- (void)viewDidLoad
+{
+  [mapView setShowsUserLocation:YES];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +33,6 @@
     
     [locationManager setDelegate:self];
     [locationManager setDesiredAccuracy:50];
-    [locationManager startUpdatingLocation];
     
     [mapView setDelegate:self];
   }
@@ -38,6 +45,15 @@
            fromLocation:(CLLocation *)oldLocation
 {
   NSLog(@"%@", newLocation);
+  
+  NSTimeInterval t = [[newLocation timestamp] timeIntervalSinceNow];
+  
+  if (t < -180)
+  {
+    return;
+  }
+  
+  [self foundLocation:newLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -59,6 +75,46 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
   NSLog(@"%@", newHeading);
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+  CLLocationCoordinate2D loc = [userLocation coordinate];
+  MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+  [self.mapView setRegion:region animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [self findLocation];
+  
+  [textField resignFirstResponder];
+  
+  return YES;
+}
+
+- (void)findLocation
+{
+  [locationManager startUpdatingLocation];
+  [activityIndicator startAnimating];
+  [locationTitleField setHidden:YES];
+}
+
+- (void)foundLocation:(CLLocation *)loc
+{
+  CLLocationCoordinate2D coord = [loc coordinate];
+  
+  SPLMapPoint *mp = [[SPLMapPoint alloc] initWithCoordinate:coord title:[locationTitleField text]];
+  
+  [mapView addAnnotation:mp];
+  
+  MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
+  [mapView setRegion:region animated:YES];
+  
+  [locationTitleField setText:@""];
+  [activityIndicator stopAnimating];
+  [locationTitleField setHidden:NO];
+  [locationManager stopUpdatingLocation];
 }
 
 @end

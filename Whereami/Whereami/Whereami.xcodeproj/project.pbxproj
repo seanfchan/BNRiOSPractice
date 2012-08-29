@@ -17,6 +17,7 @@
 		BC823FD115EAF434009FFC47 /* WhereamiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC823FCF15EAF434009FFC47 /* WhereamiViewController.xib */; };
 		BC823FDA15EB03D5009FFC47 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC823FD915EB03D5009FFC47 /* CoreLocation.framework */; };
 		BC823FDC15EB0C0A009FFC47 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC823FDB15EB0C0A009FFC47 /* MapKit.framework */; };
+		BC823FDF15EB53BF009FFC47 /* SPLMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = BC823FDE15EB53BF009FFC47 /* SPLMapPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		BC823FD015EAF434009FFC47 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WhereamiViewController.xib; sourceTree = "<group>"; };
 		BC823FD915EB03D5009FFC47 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BC823FDB15EB0C0A009FFC47 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BC823FDD15EB53BF009FFC47 /* SPLMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLMapPoint.h; sourceTree = "<group>"; };
+		BC823FDE15EB53BF009FFC47 /* SPLMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLMapPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				BC823FCA15EAF434009FFC47 /* WhereamiAppDelegate.m */,
 				BC823FCC15EAF434009FFC47 /* WhereamiViewController.h */,
 				BC823FCD15EAF434009FFC47 /* WhereamiViewController.m */,
+				BC823FDD15EB53BF009FFC47 /* SPLMapPoint.h */,
+				BC823FDE15EB53BF009FFC47 /* SPLMapPoint.m */,
 				BC823FCF15EAF434009FFC47 /* WhereamiViewController.xib */,
 				BC823FC115EAF434009FFC47 /* Supporting Files */,
 			);
@@ -173,6 +178,7 @@
 				BC823FC715EAF434009FFC47 /* main.m in Sources */,
 				BC823FCB15EAF434009FFC47 /* WhereamiAppDelegate.m in Sources */,
 				BC823FCE15EAF434009FFC47 /* WhereamiViewController.m in Sources */,
+				BC823FDF15EB53BF009FFC47 /* SPLMapPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
