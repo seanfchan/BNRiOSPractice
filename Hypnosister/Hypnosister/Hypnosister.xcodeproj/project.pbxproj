@@ -13,6 +13,7 @@
 		BC82403E15EDE04F009FFC47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC82403C15EDE04F009FFC47 /* InfoPlist.strings */; };
 		BC82404015EDE04F009FFC47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC82403F15EDE04F009FFC47 /* main.m */; };
 		BC82404415EDE04F009FFC47 /* HypnosisterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC82404315EDE04F009FFC47 /* HypnosisterAppDelegate.m */; };
+		BC82404C15EE5D3B009FFC47 /* HypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC82404B15EE5D3B009FFC47 /* HypnosisView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		BC82404115EDE04F009FFC47 /* Hypnosister-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hypnosister-Prefix.pch"; sourceTree = "<group>"; };
 		BC82404215EDE04F009FFC47 /* HypnosisterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HypnosisterAppDelegate.h; sourceTree = "<group>"; };
 		BC82404315EDE04F009FFC47 /* HypnosisterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HypnosisterAppDelegate.m; sourceTree = "<group>"; };
+		BC82404A15EE5D3B009FFC47 /* HypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisView.h; sourceTree = "<group>"; };
+		BC82404B15EE5D3B009FFC47 /* HypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 			children = (
 				BC82404215EDE04F009FFC47 /* HypnosisterAppDelegate.h */,
 				BC82404315EDE04F009FFC47 /* HypnosisterAppDelegate.m */,
+				BC82404A15EE5D3B009FFC47 /* HypnosisView.h */,
+				BC82404B15EE5D3B009FFC47 /* HypnosisView.m */,
 				BC82403A15EDE04F009FFC47 /* Supporting Files */,
 			);
 			path = Hypnosister;
@@ -155,6 +160,7 @@
 			files = (
 				BC82404015EDE04F009FFC47 /* main.m in Sources */,
 				BC82404415EDE04F009FFC47 /* HypnosisterAppDelegate.m in Sources */,
+				BC82404C15EE5D3B009FFC47 /* HypnosisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
