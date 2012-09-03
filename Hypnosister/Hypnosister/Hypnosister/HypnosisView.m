@@ -10,14 +10,28 @@
 
 @implementation HypnosisView
 
+@synthesize circleColor;
+
+- (void)setCircleColor:(UIColor *)clr
+{
+  circleColor = clr;
+  [self setNeedsDisplay];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
   if (self) {
     [self setBackgroundColor:[UIColor clearColor]];
+    [self setCircleColor:[UIColor lightGrayColor]];
   }
   
   return self;
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+  return YES;
 }
 
 - (void)drawRect:(CGRect)dirtyRect
@@ -33,18 +47,11 @@
   
   CGContextSetLineWidth(ctx, 10);
   
+  [[self circleColor] setStroke];
+  
   for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20)
   {
-    
-    [[UIColor colorWithRed:0.6 green:0.7 blue:0.4 alpha:1] setStroke];
-    
-    CGContextAddArc(ctx, center.x, center.y, currentRadius, 0.0, M_PI, YES);
-    
-    CGContextStrokePath(ctx);
-    
-    CGContextSetRGBStrokeColor(ctx, 0.6, 0.9, 0.2, 1.0);
-    
-    CGContextAddArc(ctx, center.x, center.y, currentRadius, M_PI, M_PI * 2.0, YES);
+    CGContextAddArc(ctx, center.x, center.y, currentRadius, 0.0, M_PI * 2.0, YES);
     
     CGContextStrokePath(ctx);
   }
@@ -69,6 +76,22 @@
   CGContextSetShadowWithColor(ctx, offset, 2.0, color);
   
   [text drawInRect:textRect withFont:font];
+}
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+  if (motion == UIEventSubtypeMotionShake)
+  {
+    NSLog(@"Device started shaking !!!!!");
+    if ([circleColor isEqual:[UIColor lightGrayColor]])
+    {
+      [self setCircleColor:[UIColor redColor]];
+    }
+    else
+    {
+      [self setCircleColor:[UIColor lightGrayColor]];
+    }
+  }
 }
 
 @end

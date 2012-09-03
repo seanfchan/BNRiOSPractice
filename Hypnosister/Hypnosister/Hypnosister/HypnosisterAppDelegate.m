@@ -15,9 +15,33 @@
 {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  HypnosisView *view = [[HypnosisView alloc] initWithFrame:[[self window] bounds]];
-//  [view setBackgroundColor:[UIColor redColor]];
-  [[self window] addSubview:view];
+  CGRect screenRect = [[self window] bounds];
+  
+  UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+  [scrollView setPagingEnabled:YES];
+  [[self window] addSubview:scrollView];
+  
+  CGRect bigRect = screenRect;
+  bigRect.size.width *= 2.0;
+  HypnosisView *view = [[HypnosisView alloc] initWithFrame:screenRect];
+  [scrollView addSubview:view];
+  
+  screenRect.origin.x = screenRect.size.width;
+  HypnosisView *anotherView = [[HypnosisView alloc] initWithFrame:screenRect];
+  [scrollView addSubview:anotherView];
+  
+  [scrollView setContentSize:bigRect.size];
+  
+  BOOL isHypnosisViewFirstResponder = [view becomeFirstResponder];
+  
+  if (isHypnosisViewFirstResponder)
+  {
+    NSLog(@"HypnosisView became the first responder");
+  }
+  else
+  {
+    NSLog(@"Could not become the first responder");
+  }
   
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
