@@ -15,20 +15,23 @@
 {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
+  [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                          withAnimation:UIStatusBarAnimationFade];
+  
   CGRect screenRect = [[self window] bounds];
   
   UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
-  [scrollView setPagingEnabled:YES];
+  
+  [scrollView setMinimumZoomScale:1.0];
+  [scrollView setMaximumZoomScale:5.0];
+  
+  [scrollView setDelegate:self];
+  
   [[self window] addSubview:scrollView];
   
   CGRect bigRect = screenRect;
-  bigRect.size.width *= 2.0;
-  HypnosisView *view = [[HypnosisView alloc] initWithFrame:screenRect];
+  view = [[HypnosisView alloc] initWithFrame:screenRect];
   [scrollView addSubview:view];
-  
-  screenRect.origin.x = screenRect.size.width;
-  HypnosisView *anotherView = [[HypnosisView alloc] initWithFrame:screenRect];
-  [scrollView addSubview:anotherView];
   
   [scrollView setContentSize:bigRect.size];
   
@@ -74,6 +77,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+  return view;
 }
 
 @end

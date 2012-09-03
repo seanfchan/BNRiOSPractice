@@ -268,6 +268,7 @@
 				BC82404915EDE04F009FFC47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
